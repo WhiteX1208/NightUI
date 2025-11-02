@@ -89,6 +89,180 @@ end)
 end
 MakeDraggable(d,e)
 end
+function b.Notify(c,d)
+d=a:MakeConfig({
+Title="Notification",
+Content="",
+Duration=5
+},d or{})
+spawn(function()
+if not game.CoreGui:FindFirstChild"NightUI_Notify"then
+local e=Instance.new"ScreenGui"
+e.Name="NightUI_Notify"
+e.Parent=game.CoreGui
+e.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+end
+if not game.CoreGui:WaitForChild"NightUI_Notify":FindFirstChild"NotifyLayout"then
+local e=Instance.new"Frame"
+e.Name="NotifyLayout"
+e.Parent=game.CoreGui:WaitForChild"NightUI_Notify"
+e.AnchorPoint=Vector2.new(1,1)
+e.Position=UDim2.new(1,-30,1,-30)
+e.Size=UDim2.new(0,230,0,700)
+e.BackgroundColor3=Color3.new(1,1,1)
+e.BackgroundTransparency=1
+e.BorderColor3=Color3.new(0,0,0)
+e.BorderSizePixel=0
+local f=0
+e.ChildRemoved:Connect(function()
+f=0
+for g,h in pairs(game.CoreGui.NightUI_Notify.NotifyLayout:GetChildren())do
+a:TweenObject(h,0.5,"Quad","Position",UDim2.new(0,0,1,-((h.Size.Y.Offset+15)*f)))
+f=f+1
+end
+end)
+end
+local e
+for f,g in next,game.CoreGui.NightUI_Notify.NotifyLayout:GetChildren()do
+e=-(g.Position.Y.Offset)+g.Size.Y.Offset+15
+end
+local f=Instance.new"Frame"
+local g=Instance.new"Frame"
+local h=Instance.new"UICorner"
+local i=Instance.new"UIStroke"
+local j=Instance.new"Frame"
+local k=Instance.new"ImageLabel"
+local l=Instance.new"TextButton"
+local m=Instance.new"ImageLabel"
+local n=Instance.new"TextLabel"
+local o=Instance.new"TextLabel"
+local p=Instance.new"ImageLabel"
+f.Name="NotifyFrame"
+f.Parent=game.CoreGui.NightUI_Notify.NotifyLayout
+f.BackgroundColor3=Color3.new(1,1,1)
+f.BackgroundTransparency=1
+f.BorderColor3=Color3.new(0,0,0)
+f.BorderSizePixel=0
+f.Position=UDim2.new(0,0,1,-(e))
+f.Size=UDim2.new(1,0,0,70)
+
+g.Name="RealNotify"
+g.Parent=f
+g.BackgroundColor3=Color3.new(0.0627451,0.0627451,0.0627451)
+g.BackgroundTransparency=0.019999999552965164
+g.BorderColor3=Color3.new(0,0,0)
+g.BorderSizePixel=0
+g.Position=UDim2.new(0,300,0,0)
+g.Size=UDim2.new(1,0,1,0)
+
+h.Parent=g
+
+i.Parent=g
+i.Color=Color3.new(1,1,1)
+i.Transparency=0.8999999761581421
+
+j.Name="LogoFrame"
+j.Parent=g
+j.BackgroundColor3=Color3.new(1,1,1)
+j.BackgroundTransparency=1
+j.BorderColor3=Color3.new(0,0,0)
+j.BorderSizePixel=0
+j.Position=UDim2.new(0,10,0,10)
+j.Size=UDim2.new(0,20,0,20)
+
+k.Name="LogoNotification"
+k.Parent=j
+k.AnchorPoint=Vector2.new(0.5,0.5)
+k.BackgroundColor3=Color3.new(1,1,1)
+k.BackgroundTransparency=1
+k.BorderColor3=Color3.new(0,0,0)
+k.BorderSizePixel=0
+k.Position=UDim2.new(0.5,0,0.5,0)
+k.Size=UDim2.new(1,5,1,5)
+k.Image="rbxassetid://117874257607161"
+
+l.Name="Click"
+l.Parent=g
+l.BackgroundColor3=Color3.new(1,1,1)
+l.BackgroundTransparency=1
+l.BorderColor3=Color3.new(0,0,0)
+l.BorderSizePixel=0
+l.Position=UDim2.new(1,-25,0,5)
+l.Size=UDim2.new(0,20,0,20)
+l.Font=Enum.Font.SourceSans
+l.Text=""
+l.TextColor3=Color3.new(0,0,0)
+l.TextSize=14
+
+m.Name="MaxSize_Icon"
+m.Parent=l
+m.AnchorPoint=Vector2.new(0.5,0.5)
+m.BackgroundColor3=Color3.new(1,1,1)
+m.BackgroundTransparency=1
+m.BorderColor3=Color3.new(0,0,0)
+m.BorderSizePixel=0
+m.Position=UDim2.new(0.5,0,0.5,0)
+m.Size=UDim2.new(1,-5,1,-5)
+m.Image="rbxassetid://105957381820378"
+m.ImageRectOffset=Vector2.new(480,0)
+m.ImageRectSize=Vector2.new(96,96)
+
+n.Name="Title"
+n.Parent=g
+n.BackgroundColor3=Color3.new(1,1,1)
+n.BackgroundTransparency=1
+n.BorderColor3=Color3.new(0,0,0)
+n.BorderSizePixel=0
+n.Position=UDim2.new(0,34,0,12)
+n.Size=UDim2.new(1,-80,0,14)
+n.FontFace=Font.new([[rbxassetid://12187365364]],Enum.FontWeight.Bold,Enum.FontStyle.Normal)
+n.Text=d.Title
+n.TextColor3=Color3.new(1,1,1)
+n.TextSize=13
+n.TextXAlignment=Enum.TextXAlignment.Left
+
+o.Name="Title"
+o.Parent=g
+o.BackgroundColor3=Color3.new(1,1,1)
+o.BackgroundTransparency=1
+o.BorderColor3=Color3.new(0,0,0)
+o.BorderSizePixel=0
+o.Position=UDim2.new(0,15,0,30)
+o.Size=UDim2.new(1,-40,1,-35)
+o.FontFace=Font.new([[rbxassetid://12187365364]],Enum.FontWeight.Bold,Enum.FontStyle.Normal)
+o.Text=d.Content
+o.TextColor3=Color3.new(0.521569,0.521569,0.521569)
+o.TextSize=12
+o.TextXAlignment=Enum.TextXAlignment.Left
+o.TextYAlignment=Enum.TextYAlignment.Top
+o.TextWrapped=true
+
+p.Name="Blur"
+p.Parent=g
+p.AnchorPoint=Vector2.new(0.5,0.5)
+p.BackgroundColor3=Color3.new(1,1,1)
+p.BackgroundTransparency=1
+p.BorderColor3=Color3.new(0,0,0)
+p.BorderSizePixel=0
+p.Position=UDim2.new(0.5,0,0.528888881,0)
+p.Size=UDim2.new(1,120,1,120)
+p.ZIndex=-1
+p.Image="rbxassetid://8992230677"
+p.ImageColor3=Color3.new(0,0,0)
+p.ImageTransparency=0.30000001192092896
+p.ScaleType=Enum.ScaleType.Slice
+p.SliceCenter=Rect.new(99,99,99,99)
+function Close()
+a:TweenObject(g,0.5,"Quad","Position",UDim2.new(0,300,0,0))
+wait(1.2)
+f:Destroy()
+end
+l.Activated:Connect(Close)
+a:TweenObject(g,0.5,"Quad","Position",UDim2.new(0,0,0,0))
+wait(d.Duration)
+Close()
+end)
+end
 function b.MakeWindow(c,d)
 d=a:MakeConfig({
 Title="Night Hub",
@@ -1951,4 +2125,76 @@ return ac
 end
 return Q
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 return b
