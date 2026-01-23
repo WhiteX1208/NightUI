@@ -241,17 +241,15 @@ local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}
     
     local u,v=pcall(r,...)
     if not u then
-    if m and m.Window and m.Window.Debug then local
-    x, z=v:find":%d+: "
-    
-    warn("[ WindUI: DEBUG Mode ] "..v)
-    
-    return m:Notify{
-    Title="DEBUG Mode: Error",
-    Content=not z and v or v:sub(z+1),
-    Duration=8,
-    }
-    end
+        if m and m.Window then 
+            local x, z= v:find":%d+: "
+            warn("[ WindUI: DEBUG Mode ] "..v)
+            return m:Notify{
+                Title="DEBUG Mode: Error",
+                Content=not z and v or v:sub(z+1),
+                Duration=8,
+            }
+        end
     end
     end
     
