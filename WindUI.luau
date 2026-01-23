@@ -11426,7 +11426,7 @@ local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}
     )
     h.Parent=m
     h.Size=UDim2.new(0,au.IconSize,0,au.IconSize)
-    h.Position=UDim2.new(0.5,0,0.6,0)
+    h.Position=UDim2.new(0.6,0,0.6,0)
     h.AnchorPoint=Vector2.new(0.5,0.5)
     
     au.OpenButtonMain:SetIcon(au.Icon)
