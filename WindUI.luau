@@ -9100,7 +9100,7 @@ local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}
     
     table.remove(ah.AllElements,ar.GlobalIndex)
     table.remove(aa.Elements,ar.Index)
-    table.remove(an.Elements,ar.Index)
+    --table.remove(an.Elements,ar.Index)
     aa:UpdateAllElementShapes(aa)
     end
     end
