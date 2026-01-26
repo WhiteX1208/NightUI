@@ -2058,10 +2058,10 @@ end
 function al.AddDropdown(am,an)
 local ao=an[1]or an.Name or an.Title or"Dropdown"
 local ap=an.Desc or an.Description or""
-local aq=an[2]or an.Options or{}
+local aq=an[2]or an.Values or{}
 local ar=an[3]or an.Default or{}
 local at=an[5]or an.Flag or false
-local au=an.MultiSelect or false
+local au=an.Multi or false
 local av=p:GetCallback(an,4)local
 
 aw=ButtonFrame(ak,ao,ap,UDim2.new(1,-180))
