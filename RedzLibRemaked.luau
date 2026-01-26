@@ -1141,36 +1141,39 @@ end
 return E
 end
 
-local function MakeDrag(x)
-local y
+local function MakeDrag(x,y)
 local z
 local A
 local B
-x.InputBegan:Connect(function(C)
-if C.UserInputType==Enum.UserInputType.MouseButton1 or C.UserInputType==Enum.UserInputType.Touch then
-y=true
-A=C.Position
-B=x.Position
-C.Changed:Connect(function()
-if C.UserInputState==Enum.UserInputState.End then
-y=false
+local C
+if y==nil then
+y=x
+end
+x.InputBegan:Connect(function(D)
+if D.UserInputType==Enum.UserInputType.MouseButton1 or D.UserInputType==Enum.UserInputType.Touch then
+z=true
+B=D.Position
+C=y.Position
+D.Changed:Connect(function()
+if D.UserInputState==Enum.UserInputState.End then
+z=false
 end
 end)
 end
 end)
-x.InputChanged:Connect(function(C)
-if C.UserInputType==Enum.UserInputType.MouseMovement or C.UserInputType==Enum.UserInputType.Touch then
-z=C
+x.InputChanged:Connect(function(D)
+if D.UserInputType==Enum.UserInputType.MouseMovement or D.UserInputType==Enum.UserInputType.Touch then
+A=D
 end
 end)
-game:GetService"UserInputService".InputChanged:Connect(function(C)
-if C==z and y then
-local D=C.Position-A
-local E=UDim2.new(B.X.Scale,B.X.Offset+D.X,B.Y.Scale,B.Y.Offset+D.Y)
-game:GetService"TweenService":Create(x,TweenInfo.new(0.1,Enum.EasingStyle.Quad),{Position=E}):Play()
+game:GetService"UserInputService".InputChanged:Connect(function(D)
+if D==A and z then
+local E=D.Position-B
+local F=UDim2.new(C.X.Scale,C.X.Offset+E.X,C.Y.Scale,C.Y.Offset+E.Y)
+game:GetService"TweenService":Create(y,TweenInfo.new(0.1,Enum.EasingStyle.Quad),{Position=F}):Play()
 end
 end)
-return x
+return y
 end
 
 local function VerifyTheme(x)
@@ -1429,7 +1432,7 @@ Name="Hub"
 }),"Main")
 Make("Gradient",E,{
 Rotation=45
-})MakeDrag(E)
+})
 
 local F=Make("Corner",E)
 
@@ -1446,7 +1449,7 @@ Size=UDim2.new(1,0,0,28),
 BackgroundTransparency=1,
 Name="Top Bar"
 })
-
+MakeDrag(I,E)
 local J=n(o("TextLabel",I,{
 Position=UDim2.new(0,15,0.5),
 AnchorPoint=Vector2.new(0,0.5),
