@@ -18,7 +18,7 @@ ColorSequenceKeypoint.new(0.00,Color3.fromRGB(25,25,25)),
 ColorSequenceKeypoint.new(0.50,Color3.fromRGB(32.5,32.5,32.5)),
 ColorSequenceKeypoint.new(1.00,Color3.fromRGB(25,25,25))
 },
-["Color Hub 2"]=Color3.fromRGB(30,30,30),
+["Color Hub 2"]=Color3.fromRGB(12,12,12),
 ["Color Stroke"]=Color3.fromRGB(40,40,40),
 ["Color Theme"]=Color3.fromRGB(88,101,242),
 ["Color Text"]=Color3.fromRGB(243,243,243),
@@ -1616,13 +1616,14 @@ function U.Minimize(W)
 E.Visible=not E.Visible
 end
 function U.AddMinimizeButton(W,X)
-local Y=MakeDrag(o("ImageButton",v,{
+local Y=o("ImageButton",v,{
 Size=UDim2.fromOffset(35,35),
 Position=UDim2.fromScale(0.15,0.15),
 BackgroundTransparency=1,
 BackgroundColor3=x["Color Hub 2"],
-AutoButtonColor=false
-}))
+AutoButtonColor=false,
+Draggable=false
+})
 
 local Z,_
 if X.Corner then
