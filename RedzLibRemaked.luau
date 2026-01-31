@@ -2517,7 +2517,8 @@ t(av,aG)
 CreateTween{aC,"Position",UDim2.fromScale(math.clamp(aJ,0,1),0.5),0.3,true}
 end;SetSlider(aw)
 
-aC:GetPropertyChangedSignal"Position":Connect(UpdateValues)UpdateValues()
+aC:GetPropertyChangedSignal"Position":Connect(UpdateValues)
+spawn(UpdateValues)
 
 local aG={}
 function aG.Set(aH,aI,aJ)
