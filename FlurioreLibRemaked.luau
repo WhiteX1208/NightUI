@@ -876,7 +876,7 @@ local ak=0
 local al=0
 function aj.AddTab(am,an)
 local ao=an or{}
-ao.Name=ao.Name or"Tab"
+ao.Title=ao.Title or"Tab"
 ao.Icon=ao.Icon or""
 
 local ap=Instance.new"ScrollingFrame";
@@ -936,7 +936,7 @@ at.Name="TabButton"
 at.Parent=ar
 
 au.Font=Enum.Font.GothamBold
-au.Text=ao.Name
+au.Text=ao.Title
 au.TextColor3=Color3.fromRGB(255,255,255)
 au.TextSize=13
 au.TextXAlignment=Enum.TextXAlignment.Left
@@ -960,7 +960,7 @@ av.Name="FeatureImg"
 av.Parent=ar
 if ak==0 then
 I:JumpToIndex(0)
-F.Text=ao.Name
+F.Text=ao.Title
 local ay=Instance.new"Frame";
 ay.BackgroundColor3=Color3.fromRGB(255,255,255)
 ay.BorderColor3=Color3.fromRGB(0,0,0)
@@ -1009,7 +1009,7 @@ TweenInfo.new(0.5,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut),
 ):Play()
 I:JumpToIndex(ar.LayoutOrder)
 task.wait(0.05)
-F.Text=ao.Name
+F.Text=ao.Title
 b:Create(
 ay,
 TweenInfo.new(0.35,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut),
@@ -1892,11 +1892,11 @@ local aV=aU or{}
 aV.Title=aV.Title or"Title"
 aV.Description=aV.Description or""
 aV.Multi=aV.Multi or false
-aV.Options=aV.Options or{}
-aV.Default=aV.Default or{}
+aV.Values=aV.Values or{}
+aV.Default=aV.Default or(aV.Multi and{}or"")
 aV.Callback=aV.Callback or function()end
 
-local aW={Value=aV.Default,Options=aV.Options}
+local aW={Value=(typeof(aV.Mutli)=="table"and aV.Default or{aV.Default}),Options=aV.Values}
 
 local aX=Instance.new"Frame";
 local aY=Instance.new"TextButton";
@@ -2064,7 +2064,7 @@ end
 function aW.Set(a8,a9)
 aW.Value=a9 or aW.Value
 for ba,bb in a5:GetChildren()do
-if bb.Name~="UIListLayout"and not((typeof(aW.Value)=="table"and table.find(aW.Value,bb.OptionText.Text))or(typeof(aW.Value)=="string"and string.find(bb.OptionText.Text,aW.Value)))then
+if bb.Name~="UIListLayout"and not table.find(aW.Value,bb.OptionText.Text)then
 b:Create(
 bb.ChooseFrame,
 TweenInfo.new(0.1,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut),
@@ -2080,7 +2080,7 @@ bb,
 TweenInfo.new(0.1,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut),
 {BackgroundTransparency=0.999}
 ):Play()
-elseif bb.Name~="UIListLayout"and((typeof(aW.Value)=="table"and table.find(aW.Value,bb.OptionText.Text))or(typeof(aW.Value)=="string"and string.find(bb.OptionText.Text,aW.Value)))then
+elseif bb.Name~="UIListLayout"and table.find(aW.Value,bb.OptionText.Text)then
 b:Create(
 bb.ChooseFrame.UIStroke,
 TweenInfo.new(0.2,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut),
@@ -2098,16 +2098,16 @@ TweenInfo.new(0.2,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut),
 ):Play()
 end
 end
-if aV.Multi and typeof(aW.Value)=="table"then
 local ba=table.concat(aW.Value,", ")
 if ba==""then
 a3.Text="Select Options"
 else
 a3.Text=tostring(ba)
 end
+if aV.Multi then
 aV.Callback(aW.Value)
 else
-aV.Callback(aW.Value)
+aV.Callback(table.concat(aW.Value))
 end
 end
 function aW.AddOption(a8,a9)
@@ -2181,7 +2181,6 @@ CircleClick(bc,d.X,d.Y)
 if aV.Multi then
 if ba.BackgroundTransparency>0.95 then
 table.insert(aW.Value,a9)
-aW:Set(aW.Value)
 else
 for bh,bi in pairs(aW.Value)do
 if bi==a9 then
@@ -2189,12 +2188,11 @@ table.remove(aW.Value,bh)
 break
 end
 end
-aW:Set(aW.Value)
 end
 else
-aW.Value=a9
-aW:Set(aW.Value)
+aW.Value={a9}
 end
+aW:Set(aW.Value)
 end)
 local bh=0
 for bi,bj in a5:GetChildren()do
@@ -2211,12 +2209,11 @@ ba=ba or{}
 aW:Clear()
 for bb,bc in pairs(a9)do
 aW:AddOption(bc)
-wait()
 end
 aW.Options=a9
 aW:Set(ba)
 end
-aW:Refresh(aW.Options,aW.Value)
+aW:Refresh(aW.Options,typeof(aV.Default)=="table"and aV.Default or{aV.Default})
 aS=aS+1
 al=al+1
 return aW
