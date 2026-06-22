@@ -735,7 +735,7 @@ S.BackgroundTransparency=1
 S.BorderSizePixel=0
 S.AutoButtonColor=false
 
-T.Parent=Frame
+T.Parent=U
 T.CornerRadius=UDim.new(0,100)
 
 S.MouseButton1Click:Connect(function()
@@ -779,6 +779,7 @@ end
 end)
 y.Activated:Connect(function()
 CircleClick(y,d.X,d.Y)
+U.Visible=true
 l.Visible=false
 end)
 w.Activated:Connect(function()
