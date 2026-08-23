@@ -2,7 +2,7 @@ local a=game:GetService"UserInputService"
 local b=game:GetService"TweenService"
 local c=game:GetService"Players".LocalPlayer
 local d=c:GetMouse()
-local e=c.PlayerGui
+local e=(gethui and gethui()or game:GetService'CoreGui')
 local function MakeDraggable(f,g)
 local function CustomPos(h,i)
 local j
@@ -713,7 +713,6 @@ R.Parent=L
 local S=Instance.new"ImageButton"
 local T=Instance.new"UICorner"
 local U=Instance.new'Frame'
-
 U.Parent=k
 U.Size=UDim2.new(0,60,0,60)
 U.BackgroundTransparency=0
@@ -722,11 +721,9 @@ U.Position=UDim2.new(0.2,0,0.2,0)
 U.BackgroundColor3=Color3.new(0,0,0)
 U.BorderColor3=Color3.fromRGB(0,0,0)
 U.BorderSizePixel=0
-U.Visible=false
-
 S.Parent=U
 S.Size=UDim2.new(0,55,0,45)
-S.Image="rbxassetid://116484728506478"
+S.Image="rbxassetid://101533193988556"
 S.AnchorPoint=Vector2.new(0.5,0.5)
 S.Position=UDim2.new(0.5,0,0.5,0)
 S.BackgroundColor3=Color3.new(0,0,0)
@@ -734,10 +731,8 @@ S.BorderColor3=Color3.fromRGB(0,0,0)
 S.BackgroundTransparency=1
 S.BorderSizePixel=0
 S.AutoButtonColor=false
-
 T.Parent=U
 T.CornerRadius=UDim.new(0,100)
-
 S.MouseButton1Click:Connect(function()
 S.Size=UDim2.new(0,55,0,45)
 local V=b:Create(S,TweenInfo.new(0.85,Enum.EasingStyle.Quad),{Rotation=360,Size=UDim2.new(0,55,0,45)})
@@ -745,8 +740,8 @@ V:Play()
 V.Completed:Connect(function()
 S.Rotation=0
 end)
-game:GetService"VirtualInputManager":SendKeyEvent(true,"RightControl",false,game)
-game:GetService"VirtualInputManager":SendKeyEvent(false,"RightControl",false,game)
+l.Visible=not l.Visible
+S.Visible=not S.Visible
 end)
 
 local V=game.Players.LocalPlayer.Name
@@ -779,7 +774,7 @@ end
 end)
 y.Activated:Connect(function()
 CircleClick(y,d.X,d.Y)
-U.Visible=true
+S.Visible=true
 l.Visible=false
 end)
 w.Activated:Connect(function()
@@ -793,9 +788,10 @@ end
 a.InputBegan:Connect(function(ab)
 if ab.KeyCode==Enum.KeyCode.RightControl then
 l.Visible=not l.Visible
-U.Visible=not U.Visible
+S.Visible=not S.Visible
 end
 end)
+
 MakeDraggable(q,l)
 t.Position=UDim2.new(0,r.TextBounds.X+15,0,0)
 
