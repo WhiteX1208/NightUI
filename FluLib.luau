@@ -721,6 +721,7 @@ U.Position=UDim2.new(0.2,0,0.2,0)
 U.BackgroundColor3=Color3.new(0,0,0)
 U.BorderColor3=Color3.fromRGB(0,0,0)
 U.BorderSizePixel=0
+U.Visible=false
 S.Parent=U
 S.Size=UDim2.new(0,55,0,45)
 S.Image="rbxassetid://101533193988556"
