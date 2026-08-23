@@ -742,7 +742,7 @@ V.Completed:Connect(function()
 S.Rotation=0
 end)
 l.Visible=not l.Visible
-S.Visible=not S.Visible
+U.Visible=not U.Visible
 end)
 
 local V=game.Players.LocalPlayer.Name
@@ -775,7 +775,7 @@ end
 end)
 y.Activated:Connect(function()
 CircleClick(y,d.X,d.Y)
-S.Visible=true
+U.Visible=true
 l.Visible=false
 end)
 w.Activated:Connect(function()
@@ -789,7 +789,7 @@ end
 a.InputBegan:Connect(function(ab)
 if ab.KeyCode==Enum.KeyCode.RightControl then
 l.Visible=not l.Visible
-S.Visible=not S.Visible
+U.Visible=not U.Visible
 end
 end)
 
